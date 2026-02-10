@@ -14,9 +14,22 @@ pnpm dev              # Start dev server (http://localhost:3000)
 pnpm build            # Production build
 pnpm start            # Start production server
 pnpm lint             # Run ESLint (ESLint 9 flat config)
+pnpm format           # Format all files with Prettier
+pnpm typecheck        # TypeScript type check (no emit)
+pnpm check            # Run all three: format + lint + typecheck
 ```
 
 No test framework is configured yet.
+
+## Code Quality
+
+After every implementation, **always run**:
+
+```bash
+pnpm check
+```
+
+This runs `pnpm format && pnpm lint && pnpm typecheck` in sequence. All three must pass before considering the task complete. Fix any errors before moving on.
 
 ## Tech Stack
 
@@ -59,6 +72,7 @@ No test framework is configured yet.
 ### Adding UI Components
 
 Shadcn/ui CLI is configured via `components.json`. Add new components with:
+
 ```bash
 pnpm dlx shadcn@latest add <component-name>
 ```
