@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Veta
 
-## Getting Started
+**The "Storybook" for your AI Agents.**
 
-First, run the development server:
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/) [![Vercel AI SDK](https://img.shields.io/badge/AI_SDK-Core-black)](https://sdk.vercel.ai/docs) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> **Note:** Veta is currently in active development. This repository contains the **Platform & Documentation** layer. The CLI runner is developed in a separate package.
+
+---
+
+## 📖 The Problem
+
+Companies today have "Senior Engineer Knowledge" locked in people's heads.
+
+- _How do we write a secure SQL query for our schema?_
+- _What is the standard way to handle Auth in our Next.js app?_
+- _How do I debug our legacy payment service?_
+
+Developers are using inconsistent prompts into Claude, Cursor, Copilot and even ChatGPT every day. **There is no single source of truth for AI skills.**
+
+## 🚀 The Solution: Veta
+
+**Veta** is a developer tool that treats AI Skills (prompts) like components.
+
+Just as Storybook standardized UI development, **Veta standardizes AI Skills.** It allows teams to:
+
+1.  **Write Skills Once:** Create `SKILL.md` files in your repo.
+2.  **Visualize & Test:** Run `npx veta dev` to launch a local playground.
+3.  **Compile for Any Agent:** Automatically generate `.cursorrules`, `.agents` snippets, and Claude Project instructions from your single source of truth.
+
+---
+
+## ⚡ Tech Stack
+
+This platform is built with the cutting edge of the React ecosystem (2026 standards):
+
+- **Framework:** [Next.js 16](https://nextjs.org) (App Router & Server Actions)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) (Oxide Engine)
+- **UI Library:** [Shadcn/ui](https://ui.shadcn.com)
+- TBD: **Content:** [MDX](https://mdxjs.com/) + [Shiki](https://shiki.style/) (High-fidelity syntax highlighting)
+- TBD: **Database:** Drizzle ORM + SQLite (LibSQL)
+
+---
+
+## 🛠️ Architecture
+
+Veta is composed of two parts:
+
+### 1. The Platform (This Repo)
+
+The public-facing documentation, registry search, and marketing layer. It uses **Next.js 16** to deliver a blazing-fast, SEO-optimized experience.
+
+### 2. The Runner (CLI)
+
+The local development tool that engineers install in their projects.
+
+- **Command:** `npx veta dev`
+- **Engine:** Vite (Runs locally, no data leaves the laptop).
+- **Function:** Scans `SKILL.md` files and launches a local dashboard.
+
+---
+
+## 🏁 Getting Started (Development)
+
+To run this platform locally:
+
+1.  **Clone the repo**
+
+    ```bash
+    git clone [https://github.com/your-org/veta.git](https://github.com/your-org/veta.git)
+    cd veta
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    pnpm install
+    ```
+
+3.  **Set up environment**
+
+    ```bash
+    cp .env.example .env.local
+    # Add your OpenAI/Anthropic keys for the AI playground features
+    ```
+
+4.  **Run the development server**
+    ```bash
+    pnpm dev
+    ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and request features.
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+_Named after the **"Veta"** (Mineral Vein) — representing the rich source of knowledge deep within a mountain (or a company)._
