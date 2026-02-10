@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+Be concise and ask questions if you need more context.
+
 ## Project Overview
 
 **Veta** is "The Storybook for your AI Agents" — a developer tool that treats AI Skills (prompts) like components. This repo contains the **Platform layer**: the public-facing documentation, registry, and marketing site. A separate CLI runner (`npx veta dev`) is developed in a different package.
@@ -45,10 +47,24 @@ This runs `pnpm format && pnpm lint && pnpm typecheck` in sequence. All three mu
 ### Directory Layout
 
 - `app/` — Next.js App Router pages and layouts
-- `components/` — React components
+  - `app/<route>/_components/` — Route-specific components (colocated)
+  - `app/<route>/_lib/` — Route-specific utilities (colocated)
+- `components/` — Shared React components
   - `components/ui/` — Shadcn/ui component library (Button, Card, Select, etc.)
 - `lib/utils.ts` — `cn()` utility (clsx + tailwind-merge)
 - `public/` — Static assets
+
+### Colocation
+
+Feature-specific components and utilities live **colocated** with their route using `_components/` and `_lib/` folders (underscore prefix excludes them from Next.js routing). Only **shared/reusable** code lives in the top-level `components/` and `lib/` directories.
+
+Example: `app/docs/_components/docs-sidebar.tsx`, not `components/docs-sidebar.tsx`.
+
+### Context Files
+
+Each route can have a `CONTEXT.md` file that documents technical decisions, architecture, and how things work for that section. These are consumed by developers and AI agents — **always read the relevant `CONTEXT.md` before working on a route**.
+
+Example: `app/docs/CONTEXT.md` documents the MDX + Shiki setup, layout structure, and how to add new docs pages.
 
 ### Import Aliases
 
