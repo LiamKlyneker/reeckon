@@ -40,11 +40,6 @@ export async function buildCommand() {
       emptyOutDir: true,
     },
     plugins: [react(), tailwindcss(), vetaPlugin({ skillsDir })],
-    resolve: {
-      alias: {
-        "virtual:veta-skills": "\0virtual:veta-skills",
-      },
-    },
     logLevel: "info",
   });
 

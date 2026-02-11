@@ -35,11 +35,6 @@ export async function devCommand(options: { port?: number }) {
       open: true,
     },
     plugins: [react(), tailwindcss(), vetaPlugin({ skillsDir })],
-    resolve: {
-      alias: {
-        "virtual:veta-skills": "\0virtual:veta-skills",
-      },
-    },
     optimizeDeps: {
       exclude: ["virtual:veta-skills"],
     },

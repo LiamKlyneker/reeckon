@@ -131,6 +131,14 @@ veta/
 3. Viewer SPA reads the virtual module and renders skills with hash routing
 4. File changes trigger HMR full-reload via Vite watcher
 
+### Test fixture (`test/sample-project/`)
+
+A minimal Veta project inside the monorepo that uses `workspace:*` to link to the local `packages/veta`. It smoke-tests the CLI (`veta dev` / `veta build`) without publishing to npm. Contains 2 example skills: `code-review` and `summarize`.
+
+Running `pnpm --filter sample-project dev` executes the built CLI from `packages/veta/dist/`, which starts a Vite dev server serving the viewer SPA from `packages/veta/src/viewer/`. The CLI must be rebuilt (`pnpm --filter veta build`) after any changes to CLI or plugin source before testing with sample-project.
+
+Key flow: `test/sample-project/` → runs `veta dev` → CLI at `packages/veta/dist/cli/index.js` → scans `test/sample-project/skills/` → starts Vite with viewer root at `packages/veta/src/viewer/` + `vetaPlugin` injecting skill data via `virtual:veta-skills`.
+
 ### Colocation
 
 Feature-specific components and utilities live **colocated** with their route using `_components/` and `_lib/` folders. Only **shared/reusable** code lives in top-level directories.
