@@ -1,0 +1,12 @@
+{
+  "name": "sample-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "veta dev",
+    "build": "veta build"
+  },
+  "dependencies": {
+    "veta": "workspace:*"
+  }
+}
