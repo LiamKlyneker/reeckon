@@ -1,3 +1,9 @@
+Be concise.
+Ask questions if you need more context.
+Always tell me if you get what I'm trying to do so we are on the same page.
+On plan mode always put a section at the end listing which claude skills are you going to use.
+On plan mode always tell me what edge cases we are not seeing.
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -168,7 +174,6 @@ metadata:
   author: team-name
   version: "1.0.0"
 ---
-
 # Skill content as markdown...
 ```
 

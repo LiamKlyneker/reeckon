@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-full flex-col">
-      <header className="flex items-center gap-3 border-b border-[var(--veta-border)] px-6 py-4">
+    <div>
+      <header className="flex items-center gap-3 px-6 py-4">
         <a href="#/" className="flex items-center gap-2 no-underline">
           <svg
             width="24"
@@ -24,10 +25,11 @@ export function Layout({ children }: { children: ReactNode }) {
             veta
           </span>
         </a>
-        <span className="text-xs text-[var(--veta-text-muted)]">
-          Skill Viewer
-        </span>
+        <div className="ml-auto">
+          <ThemeToggle />
+        </div>
       </header>
+
       <main className="flex-1 p-6">{children}</main>
     </div>
   );

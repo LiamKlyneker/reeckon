@@ -1,13 +1,14 @@
 import { skills } from "virtual:veta-skills";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Container from "./container";
 
 export function SkillDetail({ slug }: { slug: string }) {
   const skill = skills.find((s) => s.slug === slug);
 
   if (!skill) {
     return (
-      <div className="mx-auto max-w-3xl">
+      <Container>
         <a
           href="#/"
           className="mb-6 inline-flex items-center gap-1 text-sm text-[var(--veta-text-muted)] no-underline hover:text-[var(--veta-text)]"
@@ -17,12 +18,12 @@ export function SkillDetail({ slug }: { slug: string }) {
         <p className="py-12 text-center text-[var(--veta-text-muted)]">
           Skill &ldquo;{slug}&rdquo; not found.
         </p>
-      </div>
+      </Container>
     );
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <Container>
       <a
         href="#/"
         className="mb-6 inline-flex items-center gap-1 text-sm text-[var(--veta-text-muted)] no-underline hover:text-[var(--veta-text)]"
@@ -59,6 +60,6 @@ export function SkillDetail({ slug }: { slug: string }) {
           <Markdown remarkPlugins={[remarkGfm]}>{skill.content}</Markdown>
         </div>
       </div>
-    </div>
+    </Container>
   );
 }

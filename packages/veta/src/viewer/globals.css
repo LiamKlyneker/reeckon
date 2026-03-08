@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -7,16 +8,40 @@
   --veta-border: #27272a;
   --veta-text: #fafafa;
   --veta-text-muted: #a1a1aa;
-  --veta-accent: #a78bfa;
-  --veta-accent-dim: #7c3aed;
-  --veta-tag-bg: #1e1b4b;
-  --veta-tag-text: #c4b5fd;
+  --veta-accent: #040afe;
+  --veta-accent-dim: #0308cb;
+  --veta-tag-bg: #040afe1a;
+  --veta-tag-text: #7b80ff;
+}
+
+html.light {
+  --veta-bg: #ffffff;
+  --veta-bg-raised: #f9f9f9;
+  --veta-bg-hover: #f0f0f0;
+  --veta-border: #e4e4e7;
+  --veta-text: #09090b;
+  --veta-text-muted: #71717a;
+  --veta-accent: #040afe;
+  --veta-accent-dim: #0308cb;
+  --veta-tag-bg: #040afe14;
+  --veta-tag-text: #040afe;
+}
+
+html.dark {
+  --veta-bg: #0a0a0b;
+  --veta-bg-raised: #141416;
+  --veta-bg-hover: #1c1c20;
+  --veta-border: #27272a;
+  --veta-text: #fafafa;
+  --veta-text-muted: #a1a1aa;
+  --veta-accent: #040afe;
+  --veta-accent-dim: #0308cb;
+  --veta-tag-bg: #040afe1a;
+  --veta-tag-text: #7b80ff;
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html,
@@ -28,9 +53,7 @@ body,
 body {
   background: var(--veta-bg);
   color: var(--veta-text);
-  font-family:
-    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Geist Mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

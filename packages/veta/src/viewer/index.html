@@ -6,6 +6,21 @@
     <title>Veta — Skill Viewer</title>
   </head>
   <body>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("veta-theme") || "dark";
+        var root = document.documentElement;
+        if (theme === "system") {
+          var prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          root.classList.add(prefersDark ? "dark" : "light");
+        } else {
+          root.classList.remove("dark", "light");
+          root.classList.add(theme);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="./main.tsx"></script>
   </body>
