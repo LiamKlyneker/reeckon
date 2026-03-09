@@ -1,107 +1,159 @@
 # Veta
 
-**The Agent Skills directory for your Team.**
+**The Storybook for your AI Agent Skills.**
 
-[![Next.js 16](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/) [![Vercel AI SDK](https://img.shields.io/badge/AI_SDK-Core-black)](https://sdk.vercel.ai/docs) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Note:** Veta is currently in active development. This repository contains the **Platform & Documentation** layer. The CLI runner is developed in a separate package.
+> Veta is a developer tool that treats AI Skills (prompts) like components — write once, browse with a local dashboard, and install into any AI tool.
 
 ---
 
-## 📖 The Problem
+## The Problem
 
-Companies today have "Senior Engineer Knowledge" locked in people's heads.
+Companies have "Senior Engineer Knowledge" locked in people's heads.
 
 - _How do we write a secure SQL query for our schema?_
-- _What is the standard way to handle Auth in our Next.js app?_
+- _What's the standard way to handle Auth in our Next.js app?_
 - _How do I debug our legacy payment service?_
-- _How we should document our components?_
 
-Developers are using inconsistent prompts into Claude, Cursor, Copilot and even ChatGPT every day. **There is no single source of truth for AI skills.**
+Developers are copy-pasting inconsistent prompts into Claude, Cursor, Copilot, and ChatGPT every day. **There is no single source of truth for AI skills.**
 
-## 🚀 The Solution: Veta
+## The Solution: Veta
 
-**Veta** is a developer tool that treats AI Skills (prompts) like components and generates a complete directory of them for your team sorted by categories or areas of expertise. Inspired by Skills.sh and Storybook.
+**Veta** standardizes AI Agent Skills. Inspired by [Skills.sh](https://skills.sh) and [Storybook](https://storybook.js.org/).
 
-Just as we have tools that standardized UI development, **Veta standardizes AI Agent Skills.** It allows teams to:
-
-1.  **Write Skills Once:** Create `SKILL.md` files.
-2.  **Compile for Any Agent:** Automatically generate `.cursorrules`, `.agents` snippets, and Claude Project instructions from your single source of truth.
-3.  **Directory & Search:** Browse and search your team's AI Skills in a centralized platform sorted by categories, areas of expertise and more.
+1. **Write Skills Once** — Create `SKILL.md` files with YAML frontmatter.
+2. **Browse Locally** — `veta dev` launches a Vite-powered dashboard to preview your skills.
+3. **Build & Share** — `veta build` generates a static site for your team's skill directory.
+4. **Install Anywhere** — `veta add` fetches skills from any repo and installs them for Claude Code, Cursor, Antigravity, and more.
 
 ---
 
-## ⚡ Tech Stack
+## Quick Start
 
-This platform is built with the cutting edge of the React ecosystem (2026 standards):
+### Create a new skills project
 
-- **Framework:** [Next.js 16](https://nextjs.org) (App Router & Server Actions)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) (Oxide Engine)
-- **UI Library:** [Shadcn/ui](https://ui.shadcn.com)
-- **Content:** [MDX](https://mdxjs.com/) + [Shiki](https://shiki.style/) (High-fidelity syntax highlighting)
-- TBD: **Database:** Drizzle ORM + SQLite (LibSQL)
+```bash
+pnpm create veta my-skills
+cd my-skills
+pnpm install
+pnpm dev
+```
 
----
+### Install skills from a remote repo
 
-## 🛠️ Architecture
+```bash
+# GitHub shorthand
+npx veta add acme/ai-skills
 
-Veta is composed of two parts:
+# Full URL
+npx veta add https://github.com/acme/ai-skills
 
-### 1. The Platform (This Repo)
-
-The public-facing documentation, registry search, and marketing layer. It uses **Next.js 16** to deliver a blazing-fast, SEO-optimized experience.
-
-### 2. The Runner (CLI)
-
-The local development tool that engineers install in their projects.
-
-- **Command:** `npx veta dev`
-- **Engine:** Vite (Runs locally, no data leaves the laptop).
-- **Function:** Scans `SKILL.md` files and launches a local dashboard.
+# Non-interactive: specific skill + tool
+npx veta add acme/ai-skills --skill code-review --tool claude-code,cursor
+```
 
 ---
 
-## 🏁 Getting Started (Development)
+## Monorepo Structure
 
-To run this platform locally:
+```
+veta/
+├── apps/web/              ← Next.js docs & marketing site
+├── packages/veta/         ← CLI + Vite viewer (veta dev, build, add)
+├── packages/create-veta/  ← Project scaffolder (pnpm create veta)
+├── test/sample-project/   ← Publisher test fixture
+├── test/consumer-project/ ← Consumer test fixture (veta add)
+└── pnpm-workspace.yaml
+```
 
-1.  **Clone the repo**
+## CLI Commands
 
-    ```bash
-    git clone [https://github.com/your-org/veta.git](https://github.com/your-org/veta.git)
-    cd veta
-    ```
+| Command           | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| `veta dev`        | Start a local Vite dev server to browse skills |
+| `veta build`      | Build a static viewer site                     |
+| `veta add <repo>` | Install skills from a remote repository        |
 
-2.  **Install dependencies**
+### `veta add` options
 
-    ```bash
-    pnpm install
-    ```
+| Flag              | Description                                          |
+| ----------------- | ---------------------------------------------------- |
+| `--skill <name>`  | Install specific skill(s) by name (comma-separated)  |
+| `--tool <tools>`  | Target tools: `claude-code`, `cursor`, `antigravity` |
+| `--token <token>` | Auth token for private repos                         |
 
-3.  **Set up environment**
+### How `veta add` works
 
-    ```bash
-    cp .env.example .env.local
-    # Add your OpenAI/Anthropic keys for the AI playground features
-    ```
+1. Clones the repo (shallow) and scans `skills/*/SKILL.md`
+2. Prompts you to select skills and AI tools (or use `--skill` / `--tool` flags)
+3. Copies skills to `.agents/skills/<name>/` (canonical location)
+4. Creates symlinks for non-universal tools (e.g. `.claude/skills/<name>/` → `.agents/skills/<name>/`)
 
-4.  **Run the development server**
-    ```bash
-    pnpm dev
-    ```
+### Supported AI tools
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Tool        | Directory         | Strategy                        |
+| ----------- | ----------------- | ------------------------------- |
+| Cursor      | `.agents/skills/` | Universal (reads canonical dir) |
+| Claude Code | `.claude/skills/` | Symlink → `.agents/skills/`     |
+| Antigravity | `.agent/skills/`  | Symlink → `.agents/skills/`     |
+
+## SKILL.md Format
+
+```yaml
+---
+name: code-review
+description: Reviews code for best practices, bugs, and improvements.
+tags:
+  - review
+  - quality
+license: MIT
+metadata:
+  author: my-team
+  version: "1.0.0"
+---
+# Code Review
+
+You are an expert code reviewer...
+```
 
 ---
 
-## 🤝 Contributing
+## Tech Stack
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and request features.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **CLI:** [cac](https://github.com/cacjs/cac) + [Vite](https://vitejs.dev) + [React 19](https://react.dev)
+- **Web:** [Next.js 16](https://nextjs.org) + [Tailwind CSS v4](https://tailwindcss.com) + [Shadcn/ui](https://ui.shadcn.com)
+- **Package Manager:** [pnpm](https://pnpm.io) workspaces
+- **Build:** [tsup](https://tsup.egoist.dev) for CLI, Vite for viewer
 
 ---
 
-_Named after the **"Veta"** (Mineral Vein) — representing the rich source of knowledge deep within a mountain (or a company)._
+## Development
+
+```bash
+git clone https://github.com/creative-ghost/veta.git
+cd veta
+pnpm install
+
+# Web app
+pnpm -w run dev
+
+# CLI development
+pnpm --filter veta build
+pnpm --filter sample-project dev
+
+# Check everything
+pnpm -w run check
+```
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
+
+---
+
+_Named after the **"Veta"** (Mineral Vein) — the rich source of knowledge deep within a mountain (or a company)._

@@ -17,6 +17,19 @@ cli
     await buildCommand();
   });
 
+cli
+  .command("add <repo>", "Install skills from a remote repository")
+  .option("--skill <name>", "Install specific skill(s) by name (comma-separated)")
+  .option("--token <token>", "Auth token for private repos")
+  .option(
+    "--tool <tools>",
+    "Comma-separated tools: claude-code,cursor,antigravity"
+  )
+  .action(async (repo: string, options: Record<string, string>) => {
+    const { addCommand } = await import("./commands/add.js");
+    await addCommand({ repo, ...options });
+  });
+
 cli.help();
 cli.version("0.1.0");
 

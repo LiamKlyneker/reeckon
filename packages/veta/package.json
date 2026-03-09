@@ -24,6 +24,7 @@
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
     "react": "^19",
     "react-dom": "^19",
     "react-markdown": "^10.1.0",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/prompts": "^2.4.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tsup": "^8.5.0",

@@ -142,6 +142,9 @@ importers:
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      prompts:
+        specifier: ^2.4.2
+        version: 2.4.2
       react:
         specifier: ^19
         version: 19.2.3
@@ -164,6 +167,9 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.19.33
+      '@types/prompts':
+        specifier: ^2.4.9
+        version: 2.4.9
       '@types/react':
         specifier: ^19
         version: 19.2.13
@@ -176,6 +182,12 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  test/consumer-project:
+    dependencies:
+      veta:
+        specifier: workspace:*
+        version: link:../../packages/veta
 
   test/sample-project:
     dependencies:
