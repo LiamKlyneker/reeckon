@@ -10,6 +10,7 @@ export default defineConfig({
     "src/cli/utils/skills.ts",
     "src/cli/utils/git/fetch.ts",
     "src/cli/utils/git/github.ts",
+    "src/cli/utils/git/resolve-repo.ts",
     "src/cli/utils/adapters/types.ts",
     "src/cli/utils/adapters/registry.ts",
     "src/cli/utils/adapters/claude.ts",

@@ -1,6 +1,7 @@
-import { resolve } from "node:path";
+import { resolve, dirname } from "node:path";
 import type { Plugin, ViteDevServer } from "vite";
 import { scanSkills } from "../cli/utils/skills.js";
+import { resolveRepoIdentifier } from "../cli/utils/git/resolve-repo.js";
 
 const VIRTUAL_MODULE_ID = "virtual:veta-skills";
 const RESOLVED_VIRTUAL_MODULE_ID = "\0" + VIRTUAL_MODULE_ID;
@@ -11,10 +12,16 @@ export interface VetaPluginOptions {
 
 export function vetaPlugin(options: VetaPluginOptions): Plugin {
   const skillsDir = resolve(options.skillsDir);
+  // Resolve repo from the project root (parent of skills/)
+  const projectRoot = dirname(skillsDir);
+  const repoUrl = resolveRepoIdentifier(projectRoot);
 
   function generateModule(): string {
     const skills = scanSkills(skillsDir);
-    return `export const skills = ${JSON.stringify(skills, null, 2)};`;
+    return [
+      `export const skills = ${JSON.stringify(skills, null, 2)};`,
+      `export const repoUrl = ${JSON.stringify(repoUrl)};`,
+    ].join("\n");
   }
 
   return {

@@ -1,7 +1,42 @@
-import { skills } from "virtual:veta-skills";
+import { useState } from "react";
+import { skills, repoUrl } from "virtual:veta-skills";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Container from "./container";
+
+function CopyInstallCommand({ slug }: { slug: string }) {
+  const [copied, setCopied] = useState(false);
+
+  if (!repoUrl) return null;
+
+  const command = `npx veta add ${repoUrl} --skill ${slug}`;
+
+  function handleCopy() {
+    navigator.clipboard.writeText(command).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <div className="mb-6 rounded-lg border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] p-4">
+      <p className="mb-2 text-xs font-medium text-[var(--veta-text-muted)]">
+        Install this skill
+      </p>
+      <div className="flex items-center gap-2">
+        <code className="flex-1 overflow-x-auto rounded-md bg-[var(--veta-bg)] px-3 py-2 text-sm">
+          {command}
+        </code>
+        <button
+          onClick={handleCopy}
+          className="shrink-0 cursor-pointer rounded-md border border-[var(--veta-border)] bg-[var(--veta-bg)] px-3 py-2 text-sm text-[var(--veta-text)] transition-colors hover:bg-[var(--veta-tag-bg)]"
+        >
+          {copied ? "Copied!" : "Copy"}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function SkillDetail({ slug }: { slug: string }) {
   const skill = skills.find((s) => s.slug === slug);
@@ -54,6 +89,8 @@ export function SkillDetail({ slug }: { slug: string }) {
           </p>
         )}
       </div>
+
+      <CopyInstallCommand slug={skill.slug} />
 
       <div className="rounded-lg border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] p-6">
         <div className="veta-prose">

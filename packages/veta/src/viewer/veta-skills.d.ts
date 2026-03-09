@@ -11,4 +11,5 @@ declare module "virtual:veta-skills" {
   }
 
   export const skills: Skill[];
+  export const repoUrl: string | null;
 }

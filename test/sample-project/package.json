@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "veta": "workspace:*"
+  },
+  "veta": {
+    "repo": "add ../../test/sample-project"
   }
 }

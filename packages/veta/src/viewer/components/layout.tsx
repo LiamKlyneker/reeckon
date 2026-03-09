@@ -22,7 +22,7 @@ export function Layout({ children }: { children: ReactNode }) {
             />
           </svg>
           <span className="text-lg font-semibold text-[var(--veta-text)]">
-            veta
+            blue
           </span>
         </a>
         <div className="ml-auto">
