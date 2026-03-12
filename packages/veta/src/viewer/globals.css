@@ -4,7 +4,10 @@
 :root {
   --veta-bg: #0a0a0b;
   --veta-bg-raised: #141416;
+  --veta-bg-raised-card: #141416;
   --veta-bg-hover: #1c1c20;
+  --veta-bg-outer: #0a0a0b;
+  --veta-bg-inner: #141416;
   --veta-border: #27272a;
   --veta-text: #fafafa;
   --veta-text-muted: #a1a1aa;
@@ -19,6 +22,8 @@ html.light {
   --veta-bg-raised: #ffffff;
   --veta-bg-raised-card: #f9f9f9;
   --veta-bg-hover: #f0f0f0;
+  --veta-bg-outer: #000000;
+  --veta-bg-inner: #ffffff;
   --veta-border: #e4e4e7;
   --veta-text: #09090b;
   --veta-text-muted: #71717a;
@@ -31,7 +36,10 @@ html.light {
 html.dark {
   --veta-bg: #0a0a0b;
   --veta-bg-raised: #141416;
+  --veta-bg-raised-card: #141416;
   --veta-bg-hover: #1c1c20;
+  --veta-bg-outer: #0a0a0b;
+  --veta-bg-inner: #141416;
   --veta-border: #27272a;
   --veta-text: #fafafa;
   --veta-text-muted: #a1a1aa;

@@ -47,7 +47,7 @@ export function SkillDetail({ slug }: { slug: string }) {
         <CopyInstallCommand slug={skill.slug} />
       </Container>
 
-      <div className="my-8 h-[6px] bg-black" />
+      <div className="my-8 h-[6px] bg-[var(--veta-bg-outer)]" />
 
       <Container>
         <div className="veta-prose">

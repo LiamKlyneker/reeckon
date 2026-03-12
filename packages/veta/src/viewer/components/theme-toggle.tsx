@@ -111,7 +111,7 @@ export function ThemeToggle() {
   ];
 
   return (
-    <div className="flex items-center gap-0.5 rounded-lg border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] p-0.5">
+    <div className="flex items-center gap-0.5 rounded-lg border border-white/20 bg-white/10 p-0.5">
       {options.map((opt) => (
         <button
           key={opt.value}
@@ -119,8 +119,8 @@ export function ThemeToggle() {
           title={opt.label}
           className={`rounded-md p-1.5 transition-colors ${
             theme === opt.value
-              ? "bg-[var(--veta-bg-hover)] text-[var(--veta-text)]"
-              : "text-[var(--veta-text-muted)] hover:text-[var(--veta-text)]"
+              ? "bg-white/20 text-white"
+              : "text-white/50 hover:text-white"
           }`}
         >
           {opt.icon}

@@ -12,11 +12,11 @@ export function Layout({
 }) {
   return (
     <div>
-      <header className="gap-3 bg-black py-4">
+      <header className="gap-3 bg-[var(--veta-bg-outer)] py-4">
         <Container className="flex items-center">
           <a href="#/" className="flex items-center gap-2 no-underline">
             <div className="size-6 rounded-[2px] bg-[var(--veta-accent)]" />
-            <span className="_text-[var(--veta-text)] font-semibold text-white">
+            <span className="font-semibold text-white">
               reeckon |{" "}
               {page === "list"
                 ? `${skills.length} skills available`
@@ -29,8 +29,8 @@ export function Layout({
         </Container>
       </header>
 
-      <main className="flex-1 bg-black p-6 pt-0">
-        <div className="min-h-[calc(100vh-90px)] rounded-lg bg-white py-8">
+      <main className="flex-1 bg-[var(--veta-bg-outer)] p-6 pt-0">
+        <div className="min-h-[calc(100vh-90px)] rounded-lg bg-[var(--veta-bg-inner)] py-8">
           {children}
         </div>
       </main>
