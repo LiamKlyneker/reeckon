@@ -25,7 +25,7 @@ export function SearchBar({
         placeholder="Search skills..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] py-2 pr-4 pl-10 text-sm text-[var(--veta-text)] placeholder-[var(--veta-text-muted)] transition-colors outline-none focus:border-[var(--veta-accent-dim)]"
+        className="w-full rounded-sm border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] py-2 pr-4 pl-10 text-sm text-[var(--veta-text)] placeholder-[var(--veta-text-muted)] transition-colors outline-none focus:border-[var(--veta-accent-dim)]"
       />
     </div>
   );

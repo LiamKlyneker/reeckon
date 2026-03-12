@@ -46,7 +46,7 @@ export function TagCombobox({
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 rounded-lg border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] px-3 py-2 text-sm text-[var(--veta-text)] transition-colors hover:bg-[var(--veta-bg-hover)]"
+        className="flex items-center gap-2 rounded-sm border border-[var(--veta-border)] bg-[var(--veta-bg-raised)] px-3 py-2 text-sm text-[var(--veta-text)] transition-colors hover:bg-[var(--veta-bg-hover)]"
       >
         <svg
           width="16"

@@ -43,41 +43,26 @@ export function SkillList() {
 
   return (
     <Container>
-      <div className="mb-8 max-w-xl">
-        <h1 className="mb-6 text-4xl font-semibold">Overview</h1>
-        <p>
-          This is a list of all the skills in your project. Click on any skill
-          to see more details and how to install them.
+      <div className="mb-6 flex gap-2">
+        <SearchBar value={query} onChange={setQuery} />
+        <TagCombobox
+          allTags={allTags}
+          selected={selectedTags}
+          onChange={setSelectedTags}
+        />
+      </div>
+
+      {filtered.length === 0 ? (
+        <p className="py-12 text-center text-[var(--veta-text-muted)]">
+          No skills match your filters
         </p>
-      </div>
-      <div>
-        <div className="mb-4">
-          <p className="text-sm text-[var(--veta-text-muted)]">
-            {skills.length} skill{skills.length !== 1 ? "s" : ""} found
-          </p>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-3">
+          {filtered.map((skill) => (
+            <SkillCard key={skill.slug} skill={skill} />
+          ))}
         </div>
-
-        <div className="mb-6 flex gap-4">
-          <SearchBar value={query} onChange={setQuery} />
-          <TagCombobox
-            allTags={allTags}
-            selected={selectedTags}
-            onChange={setSelectedTags}
-          />
-        </div>
-
-        {filtered.length === 0 ? (
-          <p className="py-12 text-center text-[var(--veta-text-muted)]">
-            No skills match your filters
-          </p>
-        ) : (
-          <div className="grid gap-4 sm:grid-cols-3">
-            {filtered.map((skill) => (
-              <SkillCard key={skill.slug} skill={skill} />
-            ))}
-          </div>
-        )}
-      </div>
+      )}
     </Container>
   );
 }

@@ -16,7 +16,8 @@
 
 html.light {
   --veta-bg: #ffffff;
-  --veta-bg-raised: #f9f9f9;
+  --veta-bg-raised: #ffffff;
+  --veta-bg-raised-card: #f9f9f9;
   --veta-bg-hover: #f0f0f0;
   --veta-border: #e4e4e7;
   --veta-text: #09090b;

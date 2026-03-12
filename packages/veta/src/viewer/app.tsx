@@ -24,7 +24,7 @@ export function App() {
   }, []);
 
   return (
-    <Layout>
+    <Layout page={route.page}>
       {route.page === "detail" && route.slug ? (
         <SkillDetail slug={route.slug} />
       ) : (
