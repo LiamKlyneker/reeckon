@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The documentation section of the Veta platform. Serves as the public-facing docs for understanding what Veta is and how to use it.
+The documentation section of the Reeckon platform. Serves as the public-facing docs for understanding what Reeckon is and how to use it.
 
 ## Content System
 
@@ -22,10 +22,10 @@ Turbopack (Next.js 16 default dev server) requires all loader options to be seri
 
 ## Pages
 
-| Route                        | File                            | Description                          |
-| ---------------------------- | ------------------------------- | ------------------------------------ |
-| `/docs`                      | `page.mdx`                      | Landing page with overview and links |
-| `/docs/get-started/why-veta` | `get-started/why-veta/page.mdx` | Explains the problem Veta solves     |
+| Route                           | File                               | Description                          |
+| ------------------------------- | ---------------------------------- | ------------------------------------ |
+| `/docs`                         | `page.mdx`                         | Landing page with overview and links |
+| `/docs/get-started/why-reeckon` | `get-started/why-reeckon/page.mdx` | Explains the problem Reeckon solves  |
 
 ## Adding a New Docs Page
 

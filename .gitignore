@@ -19,8 +19,8 @@ node_modules
 /build
 dist/
 
-# veta cli
-.veta/
+# reeckon cli
+.reeckon/
 
 # misc
 .DS_Store

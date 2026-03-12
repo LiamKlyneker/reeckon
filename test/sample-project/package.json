@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "veta dev",
-    "build": "veta build"
+    "dev": "reeckon dev",
+    "build": "reeckon build"
   },
   "dependencies": {
-    "veta": "workspace:*"
+    "reeckon": "workspace:*"
   },
-  "veta": {
-    "repo": "add ../../test/sample-project"
+  "reeckon": {
+    "repo": "../../test/sample-project"
   }
 }

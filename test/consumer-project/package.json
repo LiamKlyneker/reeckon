@@ -4,6 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "veta": "workspace:*"
+    "reeckon": "workspace:*"
   }
 }

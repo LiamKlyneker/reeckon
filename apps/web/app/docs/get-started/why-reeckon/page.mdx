@@ -1,0 +1,50 @@
+# Why Reeckon?
+
+## The Problem
+
+Companies today have **"Senior Engineer Knowledge"** locked in people's heads.
+
+- _How do we write a secure SQL query for our schema?_
+- _What is the standard way to handle Auth in our Next.js app?_
+- _How do I debug our legacy payment service?_
+
+Developers are using inconsistent prompts in Claude, Cursor, Copilot, and ChatGPT every day. **There is no single source of truth for AI skills.**
+
+## The Solution
+
+**Reeckon** is a developer tool that treats AI Skills (prompts) like components. Just as Storybook standardized UI development, Reeckon standardizes AI Skills.
+
+### Write Skills Once
+
+Create `SKILL.md` files directly in your repo:
+
+```md
+---
+name: secure-sql-query
+description: Generate a secure SQL query following our schema conventions
+variables:
+  - name: table
+    description: The target table name
+  - name: operation
+    description: "select | insert | update | delete"
+---
+
+You are a database expert working with our PostgreSQL schema.
+Always use parameterized queries. Never interpolate user input.
+
+Generate a **{{operation}}** query for the `{{table}}` table.
+```
+
+### Visualize and Test
+
+Run `npx reeckon dev` to launch a local playground where you can test, iterate, and refine your skills in real time — no code changes required.
+
+### Compile for Any Agent
+
+Automatically generate `.cursorrules`, `.agents` snippets, and Claude Project instructions from your single source of truth. One skill definition, every agent format.
+
+## Why This Matters
+
+- **Consistency** — Every developer on your team uses the same battle-tested prompts.
+- **Visibility** — Skills are versioned in your repo, reviewed in PRs, and documented automatically.
+- **Portability** — Switch AI tools without rewriting your prompts. Reeckon compiles to any format.

@@ -1,0 +1,29 @@
+{
+  "name": "create-reeckon",
+  "version": "0.1.0",
+  "description": "Scaffold a new Reeckon skills project",
+  "type": "module",
+  "bin": {
+    "create-reeckon": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "link:global": "pnpm build && pnpm link --global"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.5.0",
+    "typescript": "^5"
+  }
+}

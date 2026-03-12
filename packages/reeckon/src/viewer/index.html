@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reeckon — Skill Viewer</title>
+  </head>
+  <body>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("reeckon-theme") || "dark";
+        var root = document.documentElement;
+        if (theme === "system") {
+          var prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          root.classList.add(prefersDark ? "dark" : "light");
+        } else {
+          root.classList.remove("dark", "light");
+          root.classList.add(theme);
+        }
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

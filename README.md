@@ -1,10 +1,10 @@
-# Veta
+# Reeckon
 
 **The Storybook for your AI Agent Skills.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> Veta is a developer tool that treats AI Skills (prompts) like components — write once, browse with a local dashboard, and install into any AI tool.
+> Reeckon is a developer tool that treats AI Skills (prompts) like components — write once, browse with a local dashboard, and install into any AI tool.
 
 ---
 
@@ -18,14 +18,14 @@ Companies have "Senior Engineer Knowledge" locked in people's heads.
 
 Developers are copy-pasting inconsistent prompts into Claude, Cursor, Copilot, and ChatGPT every day. **There is no single source of truth for AI skills.**
 
-## The Solution: Veta
+## The Solution: Reeckon
 
-**Veta** standardizes AI Agent Skills. Inspired by [Skills.sh](https://skills.sh) and [Storybook](https://storybook.js.org/).
+**Reeckon** standardizes AI Agent Skills. Inspired by [Skills.sh](https://skills.sh) and [Storybook](https://storybook.js.org/).
 
 1. **Write Skills Once** — Create `SKILL.md` files with YAML frontmatter.
-2. **Browse Locally** — `veta dev` launches a Vite-powered dashboard to preview your skills.
-3. **Build & Share** — `veta build` generates a static site for your team's skill directory.
-4. **Install Anywhere** — `veta add` fetches skills from any repo and installs them for Claude Code, Cursor, Antigravity, and more.
+2. **Browse Locally** — `reeckon dev` launches a Vite-powered dashboard to preview your skills.
+3. **Build & Share** — `reeckon build` generates a static site for your team's skill directory.
+4. **Install Anywhere** — `reeckon add` fetches skills from any repo and installs them for Claude Code, Cursor, Antigravity, and more.
 
 ---
 
@@ -34,7 +34,7 @@ Developers are copy-pasting inconsistent prompts into Claude, Cursor, Copilot, a
 ### Create a new skills project
 
 ```bash
-pnpm create veta my-skills
+pnpm create reeckon my-skills
 cd my-skills
 pnpm install
 pnpm dev
@@ -44,13 +44,13 @@ pnpm dev
 
 ```bash
 # GitHub shorthand
-npx veta add acme/ai-skills
+npx reeckon add acme/ai-skills
 
 # Full URL
-npx veta add https://github.com/acme/ai-skills
+npx reeckon add https://github.com/acme/ai-skills
 
 # Non-interactive: specific skill + tool
-npx veta add acme/ai-skills --skill code-review --tool claude-code,cursor
+npx reeckon add acme/ai-skills --skill code-review --tool claude-code,cursor
 ```
 
 ---
@@ -58,24 +58,24 @@ npx veta add acme/ai-skills --skill code-review --tool claude-code,cursor
 ## Monorepo Structure
 
 ```
-veta/
+reeckon/
 ├── apps/web/              ← Next.js docs & marketing site
-├── packages/veta/         ← CLI + Vite viewer (veta dev, build, add)
-├── packages/create-veta/  ← Project scaffolder (pnpm create veta)
+├── packages/reeckon/         ← CLI + Vite viewer (reeckon dev, build, add)
+├── packages/create-reeckon/  ← Project scaffolder (pnpm create reeckon)
 ├── test/sample-project/   ← Publisher test fixture
-├── test/consumer-project/ ← Consumer test fixture (veta add)
+├── test/consumer-project/ ← Consumer test fixture (reeckon add)
 └── pnpm-workspace.yaml
 ```
 
 ## CLI Commands
 
-| Command           | Description                                    |
-| ----------------- | ---------------------------------------------- |
-| `veta dev`        | Start a local Vite dev server to browse skills |
-| `veta build`      | Build a static viewer site                     |
-| `veta add <repo>` | Install skills from a remote repository        |
+| Command              | Description                                    |
+| -------------------- | ---------------------------------------------- |
+| `reeckon dev`        | Start a local Vite dev server to browse skills |
+| `reeckon build`      | Build a static viewer site                     |
+| `reeckon add <repo>` | Install skills from a remote repository        |
 
-### `veta add` options
+### `reeckon add` options
 
 | Flag              | Description                                          |
 | ----------------- | ---------------------------------------------------- |
@@ -83,7 +83,7 @@ veta/
 | `--tool <tools>`  | Target tools: `claude-code`, `cursor`, `antigravity` |
 | `--token <token>` | Auth token for private repos                         |
 
-### How `veta add` works
+### How `reeckon add` works
 
 1. Clones the repo (shallow) and scans `skills/*/SKILL.md`
 2. Prompts you to select skills and AI tools (or use `--skill` / `--tool` flags)
@@ -131,15 +131,15 @@ You are an expert code reviewer...
 ## Development
 
 ```bash
-git clone https://github.com/creative-ghost/veta.git
-cd veta
+git clone https://github.com/creativeghosts/reeckon.git
+cd reeckon
 pnpm install
 
 # Web app
 pnpm -w run dev
 
 # CLI development
-pnpm --filter veta build
+pnpm --filter reeckon build
 pnpm --filter sample-project dev
 
 # Check everything
@@ -153,7 +153,3 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for deta
 ## License
 
 MIT — see [LICENSE](LICENSE) for details.
-
----
-
-_Named after the **"Veta"** (Mineral Vein) — the rich source of knowledge deep within a mountain (or a company)._

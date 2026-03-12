@@ -11,6 +11,6 @@ export interface DocsNavSection {
 export const docsNav: DocsNavSection[] = [
   {
     title: "Get Started",
-    items: [{ title: "Why Veta?", href: "/docs/get-started/why-veta" }],
+    items: [{ title: "Why Reeckon?", href: "/docs/get-started/why-reeckon" }],
   },
 ];

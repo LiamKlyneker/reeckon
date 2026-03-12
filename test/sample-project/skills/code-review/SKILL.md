@@ -6,7 +6,7 @@ tags:
   - quality
 license: MIT
 metadata:
-  author: veta-team
+  author: reeckon-team
   version: "1.0.0"
 ---
 

@@ -12,11 +12,11 @@ Be concise and ask questions if you need more context.
 
 ## Project Overview
 
-**Veta** is "The Storybook for your AI Agents" — a developer tool that treats AI Skills (prompts) like components. This is a **monorepo** containing:
+**Reeckon** is "The Storybook for your AI Agents" — a developer tool that treats AI Skills (prompts) like components. This is a **monorepo** containing:
 
 - `apps/web/` — Public-facing docs, registry, and marketing site (Next.js)
-- `packages/veta/` — CLI + viewer (`veta dev`, `veta build`)
-- `packages/create-veta/` — Project scaffolder (`pnpm create veta`)
+- `packages/reeckon/` — CLI + viewer (`reeckon dev`, `reeckon build`)
+- `packages/create-reeckon/` — Project scaffolder (`pnpm create reeckon`)
 - `test/sample-project/` — In-repo fixture for smoke-testing the CLI
 
 ## Commands
@@ -34,23 +34,23 @@ pnpm -w run format    # Format all files with Prettier
 ### Web app (`apps/web/`)
 
 ```bash
-pnpm --filter @veta/web dev       # Start Next.js dev server (localhost:3000)
-pnpm --filter @veta/web build     # Production build
-pnpm --filter @veta/web check     # format + lint + typecheck
+pnpm --filter @reeckon/web dev       # Start Next.js dev server (localhost:3000)
+pnpm --filter @reeckon/web build     # Production build
+pnpm --filter @reeckon/web check     # format + lint + typecheck
 ```
 
-### CLI (`packages/veta/`)
+### CLI (`packages/reeckon/`)
 
 ```bash
-pnpm --filter veta build          # Build CLI with tsup
-pnpm --filter veta typecheck      # TypeScript check
+pnpm --filter reeckon build          # Build CLI with tsup
+pnpm --filter reeckon typecheck      # TypeScript check
 ```
 
-### Scaffolder (`packages/create-veta/`)
+### Scaffolder (`packages/create-reeckon/`)
 
 ```bash
-pnpm --filter create-veta build   # Build scaffolder
-pnpm --filter create-veta typecheck
+pnpm --filter create-reeckon build   # Build scaffolder
+pnpm --filter create-reeckon typecheck
 ```
 
 ### Test fixture
@@ -82,7 +82,7 @@ This runs format + lint + typecheck across all packages. All must pass before co
 - **Shadcn/ui** (radix-maia style, RSC-enabled) with Radix UI primitives
 - **class-variance-authority (CVA)** for component variants
 
-### CLI (`packages/veta/`)
+### CLI (`packages/reeckon/`)
 
 - **cac** for CLI argument parsing
 - **Vite** as dev server + bundler for the viewer
@@ -90,7 +90,7 @@ This runs format + lint + typecheck across all packages. All must pass before co
 - **Tailwind CSS v4** via `@tailwindcss/vite`
 - **gray-matter** + **fast-glob** for SKILL.md scanning
 - **tsup** for building CLI code (unbundled mode)
-- **Vite virtual module** (`virtual:veta-skills`) injects skill data into the viewer
+- **Vite virtual module** (`virtual:reeckon-skills`) injects skill data into the viewer
 
 ### Common
 
@@ -103,10 +103,10 @@ This runs format + lint + typecheck across all packages. All must pass before co
 ### Monorepo Layout
 
 ```
-veta/
+reeckon/
 ├── apps/web/              ← Next.js platform site
-├── packages/veta/         ← CLI + Vite viewer
-├── packages/create-veta/  ← Scaffolder
+├── packages/reeckon/         ← CLI + Vite viewer
+├── packages/create-reeckon/  ← Scaffolder
 ├── test/sample-project/   ← Test fixture
 ├── pnpm-workspace.yaml
 └── CLAUDE.md
@@ -123,27 +123,27 @@ veta/
 - `public/` — Static assets
 - `@/*` import alias maps to `apps/web/`
 
-### CLI (`packages/veta/`)
+### CLI (`packages/reeckon/`)
 
 - `src/cli/` — CLI entry point and commands
-- `src/vite/plugin.ts` — Vite plugin providing `virtual:veta-skills` module
+- `src/vite/plugin.ts` — Vite plugin providing `virtual:reeckon-skills` module
 - `src/viewer/` — React SPA shipped as source (processed by Vite at runtime)
 - CLI is built with tsup to `dist/`; viewer ships as raw `.tsx`/`.css` in `src/viewer/`
 
 ### How the viewer works
 
 1. CLI scans `skills/*/SKILL.md`, parses YAML frontmatter with gray-matter
-2. Vite plugin injects parsed data via `virtual:veta-skills` module
+2. Vite plugin injects parsed data via `virtual:reeckon-skills` module
 3. Viewer SPA reads the virtual module and renders skills with hash routing
 4. File changes trigger HMR full-reload via Vite watcher
 
 ### Test fixture (`test/sample-project/`)
 
-A minimal Veta project inside the monorepo that uses `workspace:*` to link to the local `packages/veta`. It smoke-tests the CLI (`veta dev` / `veta build`) without publishing to npm. Contains 2 example skills: `code-review` and `summarize`.
+A minimal Reeckon project inside the monorepo that uses `workspace:*` to link to the local `packages/reeckon`. It smoke-tests the CLI (`reeckon dev` / `reeckon build`) without publishing to npm. Contains 2 example skills: `code-review` and `summarize`.
 
-Running `pnpm --filter sample-project dev` executes the built CLI from `packages/veta/dist/`, which starts a Vite dev server serving the viewer SPA from `packages/veta/src/viewer/`. The CLI must be rebuilt (`pnpm --filter veta build`) after any changes to CLI or plugin source before testing with sample-project.
+Running `pnpm --filter sample-project dev` executes the built CLI from `packages/reeckon/dist/`, which starts a Vite dev server serving the viewer SPA from `packages/reeckon/src/viewer/`. The CLI must be rebuilt (`pnpm --filter reeckon build`) after any changes to CLI or plugin source before testing with sample-project.
 
-Key flow: `test/sample-project/` → runs `veta dev` → CLI at `packages/veta/dist/cli/index.js` → scans `test/sample-project/skills/` → starts Vite with viewer root at `packages/veta/src/viewer/` + `vetaPlugin` injecting skill data via `virtual:veta-skills`.
+Key flow: `test/sample-project/` → runs `reeckon dev` → CLI at `packages/reeckon/dist/cli/index.js` → scans `test/sample-project/skills/` → starts Vite with viewer root at `packages/reeckon/src/viewer/` + `reeckonPlugin` injecting skill data via `virtual:reeckon-skills`.
 
 ### Colocation
 
