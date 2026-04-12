@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <div className="h-2 bg-black" />
+      <div className="h-1.5 bg-black" />
       <MainFeatures />
     </main>
   );

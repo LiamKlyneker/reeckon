@@ -14,7 +14,7 @@ export default function MainFeatures() {
               <p>{feature.description}</p>
             </div>
           </div>
-          <picture className="border-primary block min-h-[500px] flex-1 rounded-3xl border-2 p-8">
+          <picture className="border-primary block min-h-[500px] flex-1 rounded-xl border-2 p-8">
             Illustration or image here
           </picture>
         </section>
