@@ -39,6 +39,10 @@ Installs skills from a remote repo into the local project. Follows the same cano
 
 Tool adapters (`utils/adapters/`) define each tool's directory, whether it's universal, and how to detect if it's installed.
 
+### `prepare` script auto-builds the CLI
+
+The `prepare` script runs `tsup` during `pnpm install`. This is necessary because `test/sample-project` and `test/consumer-project` depend on the `reeckon` bin entry (`dist/cli/index.js`). Without a built `dist/`, pnpm silently skips creating the bin symlink in `.bin/`, making `reeckon dev` fail with `command not found`.
+
 ### CLI is transpiled, not bundled
 
 tsup runs in `bundle: false` mode — it transpiles each `.ts` file to `.js` preserving the directory structure. Dependencies resolve from `node_modules` at runtime. This avoids issues with bundling native modules (tailwindcss-oxide) and CJS interop.

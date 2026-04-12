@@ -11,6 +11,7 @@
     "src/viewer"
   ],
   "scripts": {
+    "prepare": "tsup",
     "build": "tsup",
     "dev": "tsup --watch",
     "check": "tsc --noEmit",

@@ -133,14 +133,16 @@ You are an expert code reviewer...
 ```bash
 git clone https://github.com/creativeghosts/reeckon.git
 cd reeckon
-pnpm install
+pnpm install    # also builds the CLI automatically (prepare script)
 
 # Web app
 pnpm -w run dev
 
-# CLI development
-pnpm --filter reeckon build
+# Test the viewer against sample skills
 pnpm --filter sample-project dev
+
+# Rebuild CLI manually after changes to packages/reeckon/src/
+pnpm --filter reeckon build
 
 # Check everything
 pnpm -w run check
