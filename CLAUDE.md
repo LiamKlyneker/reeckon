@@ -153,6 +153,17 @@ Feature-specific components and utilities live **colocated** with their route us
 
 Each route/package can have a `CONTEXT.md` file documenting technical decisions. **Always read the relevant `CONTEXT.md` before working on a package or route**.
 
+The `scoped-context` skill (`.agents/skills/scoped-context/`) automates context loading. See its `convention-guide.md` for placement rules.
+
+### Skills
+
+AI agent skills live in `.agents/skills/` (canonical location). Each tool reads from its own directory via symlinks:
+
+- `.claude/skills/` — Claude Code (symlinks to `.agents/skills/`)
+- `.agent/skills/` — Other AI tools (symlinks to `.agents/skills/`)
+
+When adding a new skill, place it in `.agents/skills/<name>/` and create symlinks in both `.claude/skills/` and `.agent/skills/`.
+
 ### Component Conventions (Web app)
 
 - All UI components use `data-slot` attributes for styling hooks
