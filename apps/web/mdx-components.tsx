@@ -78,6 +78,24 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       );
     },
+    table: (props) => (
+      <div className="my-6 w-full overflow-x-auto">
+        <table className="w-full text-sm" {...props} />
+      </div>
+    ),
+    thead: (props) => <thead className="border-border border-b" {...props} />,
+    th: (props) => (
+      <th
+        className="text-foreground px-4 py-2 text-left font-semibold"
+        {...props}
+      />
+    ),
+    td: (props) => (
+      <td
+        className="border-border text-foreground border-b px-4 py-2"
+        {...props}
+      />
+    ),
     hr: (props) => <hr className="border-border my-8" {...props} />,
     ...components,
   };

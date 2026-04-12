@@ -1,0 +1,87 @@
+# CLI Reference
+
+## reeckon dev
+
+Start a local Vite dev server to browse your skills.
+
+```bash
+reeckon dev [--port <number>]
+```
+
+| Flag         | Default | Description      |
+| ------------ | ------- | ---------------- |
+| `-p, --port` | `4321`  | Port to serve on |
+
+Expects a `skills/` directory in the current working directory containing `*/SKILL.md` files. Opens the browser automatically. Hot-reloads when skills are added, edited, or deleted.
+
+## reeckon build
+
+Build a static viewer site.
+
+```bash
+reeckon build
+```
+
+Outputs a self-contained static site to the `.reeckon/` directory. No flags. The output contains `index.html` and all assets — deploy it to any static host.
+
+## reeckon add
+
+Install skills from a remote repository into your project.
+
+```bash
+reeckon add <repo> [--skill <names>] [--tool <tools>] [--token <token>]
+```
+
+| Flag              | Description                                                                                         |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| `--skill <name>`  | Install specific skill(s) by name, comma-separated. Skips interactive selection.                    |
+| `--tool <tools>`  | Target tools: `claude-code`, `cursor`, `antigravity`. Comma-separated. Skips interactive selection. |
+| `--token <token>` | Authentication token for private repositories. Injected into HTTPS clone URL.                       |
+
+When `--skill` or `--tool` flags are omitted, the CLI prompts you interactively.
+
+### Repo Formats
+
+| Format           | Example                                 |
+| ---------------- | --------------------------------------- |
+| GitHub shorthand | `acme/ai-skills`                        |
+| Full HTTPS URL   | `https://github.com/acme/ai-skills.git` |
+| SSH URL          | `git@github.com:acme/ai-skills.git`     |
+| Local path       | `../my-skills` or `/absolute/path`      |
+
+### Examples
+
+```bash
+# Interactive mode — prompts for skill and tool selection
+npx reeckon add acme/ai-skills
+
+# Non-interactive — specific skill and tools
+npx reeckon add acme/ai-skills --skill code-review --tool claude-code,cursor
+
+# Private repo with auth token
+npx reeckon add acme/private-skills --token ghp_xxxx
+```
+
+### Repo Detection
+
+When you publish your own skills project, Reeckon auto-detects the repo URL from `git remote get-url origin` and converts GitHub HTTPS/SSH URLs to shorthand (`owner/repo`). You can override this by adding a `reeckon.repo` field to your `package.json`:
+
+```json
+{
+  "reeckon": {
+    "repo": "your-org/my-skills"
+  }
+}
+```
+
+This repo URL is displayed in the viewer's install command.
+
+## create-reeckon
+
+Scaffold a new skills project. This is a separate package, not a subcommand of `reeckon`.
+
+```bash
+pnpm create reeckon [directory]
+```
+
+If `directory` is omitted, you'll be prompted for a project name. Creates a ready-to-use project with a sample `code-review` skill, `package.json` with `dev` and `build` scripts, and `.gitignore`.

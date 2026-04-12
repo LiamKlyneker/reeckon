@@ -1,0 +1,105 @@
+# Quick Start
+
+Get a skills project running in minutes — from scaffolding to sharing.
+
+## Create a Skills Project
+
+```bash
+pnpm create reeckon my-skills
+cd my-skills
+pnpm install
+```
+
+This generates a minimal project:
+
+```text
+my-skills/
+├── skills/
+│   └── code-review/
+│       └── SKILL.md
+├── package.json
+└── .gitignore
+```
+
+The `package.json` comes pre-configured with `dev` and `build` scripts pointing to the Reeckon CLI.
+
+## Preview Your Skills
+
+```bash
+pnpm dev
+```
+
+This starts a Vite dev server at `http://localhost:4321` with a dashboard to browse your skills. It hot-reloads as you add or edit `SKILL.md` files.
+
+## Write a Skill
+
+Each skill lives in its own directory under `skills/`. The scaffolder creates a `code-review` skill to start with:
+
+```md
+---
+name: code-review
+description: Reviews code for best practices, bugs, and improvements.
+tags:
+  - review
+  - quality
+license: MIT
+metadata:
+  author: my-team
+  version: "1.0.0"
+---
+
+# Code Review
+
+You are an expert code reviewer. When given code, analyze it for:
+
+1. **Best practices** — Does the code follow language conventions?
+2. **Bugs** — Are there potential runtime errors or logic issues?
+3. **Performance** — Are there obvious inefficiencies?
+4. **Readability** — Is the code clear and well-structured?
+
+Provide specific, actionable feedback with code examples when possible.
+```
+
+The `---` block is YAML frontmatter with metadata. Everything below it is the skill content — the actual prompt your AI tool will use. See [SKILL.md Format](/docs/skill-format) for all supported fields.
+
+To add another skill, create a new directory with a `SKILL.md` file:
+
+```bash
+mkdir skills/summarize
+```
+
+Then create `skills/summarize/SKILL.md` with your frontmatter and prompt content. The dev server picks it up automatically.
+
+## Build a Static Viewer
+
+```bash
+pnpm build
+```
+
+This outputs a self-contained static site to the `.reeckon/` directory. Open `.reeckon/index.html` to preview, or deploy it for your team.
+
+## Share via GitHub
+
+Push your skills project to GitHub (or Azure DevOps, GitLab, etc.):
+
+```bash
+git init && git add . && git commit -m "Initial skills"
+git remote add origin git@github.com:your-org/my-skills.git
+git push -u origin main
+```
+
+Now anyone on your team can install these skills into their own projects:
+
+```bash
+npx reeckon add your-org/my-skills
+```
+
+This clones the repo, prompts for which skills and AI tools to install, and copies them to the right directories. See [CLI Reference](/docs/cli-reference) for all flags.
+
+## Deploy Your Viewer
+
+The `.reeckon/` build output is a static site. Deploy it to any static host so your team can browse skills in a browser:
+
+- **Vercel** — Set the build command to `reeckon build` and the output directory to `.reeckon`
+- **Netlify** — Same approach: build command `reeckon build`, publish directory `.reeckon`
+- **GitHub Pages** — Push the `.reeckon/` contents to a `gh-pages` branch or use a GitHub Action

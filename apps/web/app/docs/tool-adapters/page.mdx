@@ -1,0 +1,71 @@
+# Tool Adapters
+
+Reeckon installs skills to a canonical directory and creates symlinks for tools that use different paths. One copy of each skill, multiple tools reading it.
+
+## The Canonical Path
+
+Inspired by [Skills.sh](https://skills.sh), Reeckon uses `.agents/skills/` as the single source of truth for installed skills. This convention is recognized by a growing number of AI coding tools.
+
+### Tools that read `.agents/skills/` natively
+
+The following tools read from `.agents/skills/` directly — no symlinks needed:
+
+- Cursor
+- Antigravity
+- Amp
+- Cline
+- Codex
+- Gemini CLI
+- GitHub Copilot
+- Replit
+- Warp
+- OpenCode
+- Deep Agents
+
+And more. Any tool that follows the `.agents/skills/` convention works with Reeckon out of the box.
+
+### Tools that use their own directory
+
+Some tools expect skills in a tool-specific directory. Reeckon creates symlinks from those directories back to the canonical `.agents/skills/` location:
+
+```text
+.claude/skills/code-review → ../../.agents/skills/code-review
+```
+
+If symlinks fail (e.g. on some Windows configurations), Reeckon falls back to copying the skill directory.
+
+## Supported Adapters
+
+Reeckon currently ships with 3 tool adapters:
+
+| Tool        | ID            | Skills Directory  | Strategy                     |
+| ----------- | ------------- | ----------------- | ---------------------------- |
+| Cursor      | `cursor`      | `.agents/skills/` | Universal (canonical path)   |
+| Claude Code | `claude-code` | `.claude/skills/` | Symlink to `.agents/skills/` |
+| Antigravity | `antigravity` | `.agent/skills/`  | Symlink to `.agents/skills/` |
+
+## Using the --tool Flag
+
+Target specific tools when installing skills:
+
+```bash
+# Install for Claude Code and Cursor
+npx reeckon add acme/ai-skills --tool claude-code,cursor
+
+# Interactive mode — prompts for tool selection
+npx reeckon add acme/ai-skills
+```
+
+When no `--tool` flag is provided, `reeckon add` prompts you to select from all available adapters.
+
+## Other AI Tools
+
+Many AI coding tools already read from `.agents/skills/` or similar paths. Even without a dedicated Reeckon adapter, skills installed to `.agents/skills/` are available to tools that follow the convention.
+
+For tools with their own directory (like Windsurf at `.windsurf/skills/` or Roo Code at `.roo/skills/`), you can manually create a symlink:
+
+```bash
+ln -s .agents/skills/code-review .windsurf/skills/code-review
+```
+
+Native adapter support for more tools is on the [roadmap](https://github.com/creativeghosts/reeckon#roadmap).

@@ -1,6 +1,7 @@
 import Container from "@/components/container";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, Copy } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -15,9 +16,10 @@ export default function Hero() {
         many more.
       </p>
       <div className="flex gap-4">
-        <Button size="lg">
-          Get started
-          <ArrowRightIcon />
+        <Button size="lg" asChild>
+          <Link href="/docs">
+            Get started <ArrowRightIcon />
+          </Link>
         </Button>
         <div className="bg-accent flex items-center gap-4 rounded pr-2 pl-4">
           <p>npm create reeckon@latest</p>

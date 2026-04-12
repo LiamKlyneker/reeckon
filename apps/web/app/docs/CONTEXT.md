@@ -22,15 +22,18 @@ Turbopack (Next.js 16 default dev server) requires all loader options to be seri
 
 ## Pages
 
-| Route                           | File                               | Description                          |
-| ------------------------------- | ---------------------------------- | ------------------------------------ |
-| `/docs`                         | `page.mdx`                         | Landing page with overview and links |
-| `/docs/get-started/why-reeckon` | `get-started/why-reeckon/page.mdx` | Explains the problem Reeckon solves  |
+| Route                 | File                     | Description                        |
+| --------------------- | ------------------------ | ---------------------------------- |
+| `/docs`               | `page.mdx`               | Introduction — what Reeckon is     |
+| `/docs/quick-start`   | `quick-start/page.mdx`   | Full setup-to-deploy walkthrough   |
+| `/docs/skill-format`  | `skill-format/page.mdx`  | SKILL.md frontmatter and format    |
+| `/docs/cli-reference` | `cli-reference/page.mdx` | All CLI commands and flags         |
+| `/docs/tool-adapters` | `tool-adapters/page.mdx` | Canonical path, adapters, symlinks |
 
 ## Adding a New Docs Page
 
-1. Create `app/docs/<section>/<slug>/page.mdx`
-2. Add an entry to `_lib/docs-nav.ts` under the appropriate section (or create a new section)
+1. Create `app/docs/<slug>/page.mdx`
+2. Add an entry to `_lib/docs-nav.ts`
 3. The sidebar and routing pick it up automatically
 
 ## Key Decisions

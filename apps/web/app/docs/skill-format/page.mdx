@@ -1,0 +1,68 @@
+# SKILL.md Format
+
+Skills are Markdown files with YAML frontmatter. Each skill lives in its own directory under `skills/`.
+
+## Directory Structure
+
+```text
+skills/
+├── code-review/
+│   └── SKILL.md
+├── summarize/
+│   └── SKILL.md
+└── auth-guide/
+    └── SKILL.md
+```
+
+The directory name becomes the skill's **slug** — the identifier used for installation and URL routing in the viewer.
+
+## Frontmatter Fields
+
+The YAML frontmatter block (between `---` markers) defines the skill's metadata:
+
+| Field         | Type       | Required | Description                                       |
+| ------------- | ---------- | -------- | ------------------------------------------------- |
+| `name`        | `string`   | Yes      | Human-readable skill name                         |
+| `description` | `string`   | Yes      | One-line description shown in the viewer          |
+| `tags`        | `string[]` | No       | Categorization tags for filtering                 |
+| `license`     | `string`   | No       | License identifier (e.g. `MIT`, `Apache-2.0`)     |
+| `metadata`    | `object`   | No       | Arbitrary key-value pairs (author, version, etc.) |
+
+## Markdown Content
+
+Everything below the frontmatter `---` is the skill content. This is the actual prompt text that gets installed into your AI tool's skills directory.
+
+You can use full Markdown including headings, lists, code blocks, bold, italic, and links. The viewer renders this content with GitHub Flavored Markdown support.
+
+## Full Example
+
+```md
+---
+name: code-review
+description: Reviews code for best practices, bugs, and improvements.
+tags:
+  - review
+  - quality
+license: MIT
+metadata:
+  author: my-team
+  version: "1.0.0"
+---
+
+# Code Review
+
+You are an expert code reviewer. When given code, analyze it for:
+
+1. **Best practices** — Does the code follow language conventions?
+2. **Bugs** — Are there potential runtime errors or logic issues?
+3. **Performance** — Are there obvious inefficiencies?
+4. **Readability** — Is the code clear and well-structured?
+
+Provide specific, actionable feedback with code examples when possible.
+```
+
+## Slug Resolution
+
+The skill slug is the **directory name**, not the `name` field. For `skills/code-review/SKILL.md`, the slug is `code-review`.
+
+When using `reeckon add --skill`, you can match by slug or by name. The viewer uses the slug for URL routing (`#/skills/code-review`) and shows the `name` field as the display title.

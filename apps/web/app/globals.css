@@ -127,4 +127,7 @@
   a {
     @apply hover:underline;
   }
+  a[data-slot="button"] {
+    @apply hover:no-underline;
+  }
 }

@@ -10,7 +10,13 @@ export interface DocsNavSection {
 
 export const docsNav: DocsNavSection[] = [
   {
-    title: "Get Started",
-    items: [{ title: "Why Reeckon?", href: "/docs/get-started/why-reeckon" }],
+    title: "Documentation",
+    items: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Quick Start", href: "/docs/quick-start" },
+      { title: "SKILL.md Format", href: "/docs/skill-format" },
+      { title: "CLI Reference", href: "/docs/cli-reference" },
+      { title: "Tool Adapters", href: "/docs/tool-adapters" },
+    ],
   },
 ];

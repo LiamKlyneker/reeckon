@@ -119,6 +119,11 @@ You are an expert code reviewer...
 
 ---
 
+## Roadmap
+
+- **Claude Code plugin marketplace** — Generate `marketplace.json` and `plugin.json` to distribute skills via the [Claude Code plugin ecosystem](https://code.claude.com/docs/en/plugin-marketplaces)
+- **Expanded adapter support** — Native adapters for Windsurf, Roo Code, Continue, and other AI coding tools beyond the current 3
+
 ## Tech Stack
 
 - **CLI:** [cac](https://github.com/cacjs/cac) + [Vite](https://vitejs.dev) + [React 19](https://react.dev)

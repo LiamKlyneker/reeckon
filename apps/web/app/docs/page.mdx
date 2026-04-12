@@ -1,7 +1,31 @@
-# Documentation
+# Reeckon
 
-Welcome to the Reeckon documentation. Reeckon is **"The Storybook for your AI Agents"** — a developer tool that treats AI Skills (prompts) like components.
+> The Storybook for AI Skills.
 
-## Get Started
+## The Problem
 
-- [Why Reeckon?](/docs/get-started/why-reeckon) — Learn the problem Reeckon solves and how it works.
+Companies have **"Senior Engineer Knowledge"** locked in people's heads.
+
+- _How do we write a secure SQL query for our schema?_
+- _What's the standard way to handle Auth in our Next.js app?_
+- _How do I debug our legacy payment service?_
+
+Developers are copy-pasting inconsistent prompts into Claude, Cursor, Copilot, and ChatGPT every day. **There is no single source of truth for AI skills.**
+
+## The Solution
+
+[Reeckon](https://github.com/creativeghosts/reeckon) standardizes AI Agent Skills. Inspired by [Skills.sh](https://skills.sh) and [Storybook](https://storybook.js.org/).
+
+1. **Write skills once** — Create `SKILL.md` files with YAML frontmatter directly in your repo.
+2. **Browse locally** — `reeckon dev` launches a Vite-powered dashboard to preview, search, and filter your skills.
+3. **Build and share** — `reeckon build` generates a static site you can deploy for your team.
+4. **Install anywhere** — `reeckon add` fetches skills from any Git repo and installs them for Claude Code, Cursor, and dozens of other AI tools.
+
+Just as Storybook gave teams a shared catalog for UI components, Reeckon gives teams a shared catalog for AI skills. Skills are versioned in your repo, reviewed in PRs, and documented automatically.
+
+## Next Steps
+
+- [Quick Start](/docs/quick-start) — Create your first skills project in minutes
+- [SKILL.md Format](/docs/skill-format) — Understand the skill file format
+- [CLI Reference](/docs/cli-reference) — All commands and flags
+- [Tool Adapters](/docs/tool-adapters) — How skills reach your AI tools

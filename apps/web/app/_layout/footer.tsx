@@ -5,15 +5,15 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="overflow-hidden bg-black text-white">
-      <Container className="mb-20 pt-24 pb-32">
-        <ul className="grid place-content-start gap-2">
-          <li>
+      <Container className="mb-20 py-32">
+        <ul className="grid place-content-end gap-2">
+          <li className="text-right">
             <Link href="/docs">docs</Link>
           </li>
-          <li>
+          <li className="text-right">
             <Link href="/about-the-project">about the project</Link>
           </li>
-          <li>
+          <li className="text-right">
             <Link href="/buy-me-a-coffee">buy me a coffee</Link>
           </li>
         </ul>
