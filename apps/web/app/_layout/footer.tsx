@@ -23,8 +23,16 @@ export default function Footer() {
           reeckon
         </span>
         <p className="relative text-sm text-white/50 lg:pb-2.5">
-          designed and coded by @liamklyneker with a lot of{" "}
-          <Heart size="12" className="inline" /> in some part of planet earth
+          designed and coded by{" "}
+          <a
+            href="https://github.com/liamklyneker"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @liamklyneker
+          </a>{" "}
+          with a lot of <Heart size="12" className="inline" /> in some part of
+          planet earth
           <span className="bg-primary absolute bottom-0 left-0 z-50 h-[2px] w-full lg:h-3" />
         </p>
         <div className="bg-primary absolute right-0 bottom-0 z-50 h-[2px] w-[100vw] lg:h-3 lg:w-[calc(25vw)]" />

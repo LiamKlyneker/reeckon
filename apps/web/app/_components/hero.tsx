@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <Container className="pt-24 pb-28">
       <h1 className="mb-5 max-w-[690px] text-5xl font-semibold">
-        A single place for your company’s skills
+        A single place for your team's skills
       </h1>
       <p className="mb-10 max-w-[620px]">
         <span className="text-primary font-semibold">reeckon</span> is a library
