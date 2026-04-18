@@ -27,7 +27,7 @@
     "url": "https://github.com/LiamKlyneker/reeckon/issues"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "type": "module",
   "bin": {

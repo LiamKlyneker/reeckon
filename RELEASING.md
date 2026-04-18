@@ -13,7 +13,7 @@ Both use **independent** versioning. `apps/web`, `test/sample-project`, and `tes
 
 1. On a feature branch, make your change.
 2. Run `pnpm changeset`, pick the affected package(s) and bump type, write a summary. Commit the `.changeset/*.md` file.
-3. Open a PR. CI verifies the changeset is present, lint passes, and the CLI builds on Linux/macOS/Windows with Node 20 + 22.
+3. Open a PR. CI verifies the changeset is present, lint passes, and the CLI builds on Linux/macOS/Windows with Node 22.
 4. Merge to `main`.
 5. The **Release** workflow runs. If there are unreleased changesets, it opens (or updates) a **"Version Packages"** PR that bumps `package.json` versions and regenerates each package's `CHANGELOG.md`.
 6. Review the Version Packages PR and merge it.
