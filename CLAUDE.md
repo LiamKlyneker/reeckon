@@ -72,6 +72,20 @@ pnpm -w run check
 
 This runs format + lint + typecheck across all packages. All must pass before considering the task complete.
 
+## Releases
+
+`reeckon` and `create-reeckon` are published to npm. Versioning is managed by [Changesets](https://github.com/changesets/changesets).
+
+**Any change to `packages/reeckon/` or `packages/create-reeckon/` requires a changeset:**
+
+```bash
+pnpm changeset
+```
+
+CI enforces this — PRs touching those packages without a changeset will fail. Internal-only changes (CI, docs, `apps/web`) don't need one.
+
+See [`RELEASING.md`](./RELEASING.md) for the full release flow.
+
 ## Tech Stack
 
 ### Web app (`apps/web/`)
