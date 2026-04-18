@@ -3,7 +3,15 @@ packages:
   - "packages/*"
   - "test/*"
 
+# Prevents pnpm from prepending a phantom packageManagerDependencies
+# document to pnpm-lock.yaml (breaks pnpm install --frozen-lockfile on
+# Windows with ERR_PNPM_BROKEN_LOCKFILE).
 managePackageManagerVersions: false
+
+# Downgrades ignored-build-script errors to warnings in CI. Without
+# this, pnpm 10 fails --frozen-lockfile in CI whenever any transitive
+# dep has a build script that wasn't explicitly approved, even if
+# it's in ignoredBuiltDependencies.
 strictDepBuilds: false
 
 onlyBuiltDependencies:

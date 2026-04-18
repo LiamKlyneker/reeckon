@@ -31,6 +31,42 @@ No tokens to rotate. No manual `npm publish`.
 - [changeset-bot](https://github.com/apps/changeset-bot) installed on the repo.
 - Branch protection on `main` requires CI green.
 
+## Troubleshooting
+
+Things that have broken the release pipeline before, preserved here so the next person debugging at 3am doesn't re-derive them.
+
+### Release PR fails `pnpm install --frozen-lockfile` on Windows with `ERR_PNPM_BROKEN_LOCKFILE`
+
+`pnpm-lock.yaml` has two concatenated YAML documents. pnpm's "managed package manager versions" feature (on by default in pnpm 10) prepends a `packageManagerDependencies` block as a separate document when the release workflow runs `pnpm install` a second time inside `changesets/action`. Windows pnpm rejects multi-doc lockfiles; macOS/Linux silently accept them.
+
+Fix: `managePackageManagerVersions: false` in `pnpm-workspace.yaml`. **Must live there** — putting it in the `pnpm` block of `package.json` is silently ignored in pnpm 10.
+
+### CI fails with `ERR_PNPM_IGNORED_BUILDS` even though the package is in `ignoredBuiltDependencies`
+
+pnpm 10 treats ignored build scripts as errors in CI mode, even ones you explicitly ignored. Local runs only warn.
+
+Fix: `strictDepBuilds: false` in `pnpm-workspace.yaml`.
+
+### pnpm settings in `package.json` stopped working
+
+In pnpm 10, as soon as `pnpm-workspace.yaml` contains any settings, the `pnpm` block in `package.json` is ignored entirely. Keep all pnpm settings (`onlyBuiltDependencies`, `ignoredBuiltDependencies`, etc.) in `pnpm-workspace.yaml`.
+
+### `Changeset present` CI job fails on the Release PR
+
+The Release PR deletes `.changeset/*.md` files by design, so `pnpm changeset status` thinks the PR is missing a changeset. The job in `ci.yml` is gated with `github.head_ref != 'changeset-release/main'` — don't remove that condition.
+
+### Release PR got into a stuck state — closed it, but the workflow didn't reopen a fresh one
+
+If you close the Release PR while the release workflow is mid-run, `changesets/action` can race with the close and try to "update" the closed PR via the GitHub API. Result: the PR stays closed, the branch may or may not exist, and the next push to `main` won't always retrigger cleanly.
+
+Fix: re-run the last release workflow run (`gh run rerun <id>` or the GitHub UI). It will find no open Release PR and create a fresh one.
+
+### The Release PR's CI checks need manual approval every time
+
+Workflows triggered by `GITHUB_TOKEN` can't themselves trigger other workflows — GitHub safety policy. The Release PR is created by `github-actions[bot]`, so CI doesn't auto-run on it; you'll see "Approve and run workflows" instead.
+
+To auto-run: create a fine-grained PAT (or GitHub App token) with `contents: write` + `pull-requests: write`, store as `RELEASE_PAT`, and pass it to both `actions/checkout` and `changesets/action` in `release.yml`. Downside: commits on the Release PR are attributed to the PAT owner rather than `github-actions[bot]`.
+
 ## Hotfixing a bad release
 
 npm disallows unpublish after 72 hours. If a release is broken:
