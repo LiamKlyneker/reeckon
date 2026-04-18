@@ -22,6 +22,9 @@ dist/
 # reeckon cli
 .reeckon/
 
+# pnpm pack output
+*.tgz
+
 # misc
 .DS_Store
 *.pem
