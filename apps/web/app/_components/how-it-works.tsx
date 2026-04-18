@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Container from "@/components/container";
 import WindowFrame from "./window-frame";
+import SectionTitle from "./section-title";
 
 const STEPS = [
   {
@@ -48,13 +49,11 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <Container className="mb-40 py-40">
-      <div className="mb-16 text-center">
-        <h2 className="mb-4 text-3xl font-semibold">How it works</h2>
-        <p className="text-muted-foreground mx-auto max-w-[420px]">
-          From zero to shared skills in three commands.
-        </p>
-      </div>
+    <Container className="mb-40 py-32">
+      <SectionTitle
+        kicker="how it works"
+        title="From zero to shared skills in three commands."
+      />
 
       <div ref={ref} className="relative">
         {/* Connector line (desktop only) */}
@@ -71,10 +70,10 @@ export default function HowItWorks() {
                 transitionDelay: `${i * 150}ms`,
               }}
             >
-              <div className="bg-primary text-primary-foreground relative z-10 mx-auto mb-6 flex size-10 items-center justify-center rounded-full text-sm font-semibold lg:mx-auto">
+              <div className="step-bubble-ring bg-primary text-primary-foreground relative z-10 mx-auto mb-5 flex size-11 items-center justify-center rounded-full font-mono text-sm font-medium">
                 {step.number}
               </div>
-              <h3 className="mb-2 text-center text-xl font-semibold">
+              <h3 className="mb-2 text-center font-mono text-lg font-medium">
                 {step.title}
               </h3>
               <p className="text-muted-foreground mb-5 text-center text-sm">

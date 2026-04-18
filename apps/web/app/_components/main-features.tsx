@@ -3,24 +3,29 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Container from "@/components/container";
 import WindowFrame from "./window-frame";
+import SectionTitle from "./section-title";
 
 const FEATURES = [
   {
+    number: "01",
     title: "Write once, use everywhere",
     description:
       "Define skills as SKILL.md files with YAML frontmatter. One file works across Claude Code, Cursor, Codex, and 12+ AI tools through Reeckon's adapter system.",
   },
   {
+    number: "02",
     title: "Browse locally with reeckon dev",
     description:
       "Launch a Vite-powered dashboard to preview, search, and filter your skills. Hot-reloads as you edit, with dark and light themes and a minimal interface that stays out of your way.",
   },
   {
+    number: "03",
     title: "Build & deploy a static viewer",
     description:
       "Run reeckon build to generate a self-contained static site. Deploy to Vercel, Netlify, or GitHub Pages — your team can browse skills from anywhere.",
   },
   {
+    number: "04",
     title: "Install from any repo",
     description:
       "Fetch skills from GitHub, Azure DevOps, GitLab, or local paths with reeckon add. Supports private repos, interactive selection, and direct CLI flags for automation.",
@@ -29,7 +34,7 @@ const FEATURES = [
 
 function SkillMdPreview() {
   return (
-    <WindowFrame variant="browser">
+    <WindowFrame variant="browser" title="skills/code-review/SKILL.md">
       <pre className="overflow-x-auto p-5 text-sm leading-relaxed">
         <code>
           <span className="text-muted-foreground">---</span>
@@ -98,7 +103,7 @@ function ViewerPreview() {
   }, [handleMove]);
 
   return (
-    <WindowFrame variant="browser">
+    <WindowFrame variant="browser" title="localhost:5173 — reeckon dev">
       <div
         ref={containerRef}
         className="relative overflow-hidden select-none"
@@ -163,7 +168,7 @@ function ViewerPreview() {
 
 function BuildPreview() {
   return (
-    <WindowFrame variant="terminal">
+    <WindowFrame variant="terminal" title="~/acme/skills — build">
       <div className="p-5 text-sm leading-relaxed">
         <p>
           <span className="text-muted-foreground">$</span> reeckon build
@@ -191,7 +196,7 @@ function BuildPreview() {
 
 function InstallPreview() {
   return (
-    <WindowFrame variant="terminal">
+    <WindowFrame variant="terminal" title="~/my-project — install">
       <div className="p-5 text-sm leading-relaxed">
         <p>
           <span className="text-muted-foreground">$</span> npx reeckon add
@@ -250,6 +255,11 @@ export default function MainFeatures() {
 
   return (
     <Container className="py-28">
+      <SectionTitle
+        kicker="features"
+        title="Four commands. Every tool your team uses."
+        sub="Define skills once as Markdown. reeckon takes care of the rest."
+      />
       {/* Mobile: stacked layout */}
       <div className="flex flex-col gap-20 lg:hidden">
         {FEATURES.map((feature, i) => {
@@ -257,7 +267,12 @@ export default function MainFeatures() {
           return (
             <section key={feature.title}>
               <div className="mb-8">
-                <h2 className="mb-4 text-3xl font-semibold">{feature.title}</h2>
+                <div className="ft-num text-muted-foreground mb-3 font-mono text-xs">
+                  {feature.number}
+                </div>
+                <h2 className="mb-4 font-mono text-2xl font-medium tracking-tight">
+                  {feature.title}
+                </h2>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
               <Panel />
@@ -278,7 +293,12 @@ export default function MainFeatures() {
               className="flex min-h-[70vh] items-center"
             >
               <div className="max-w-[460px]">
-                <h2 className="mb-4 text-3xl font-semibold">{feature.title}</h2>
+                <div className="ft-num text-muted-foreground mb-3 font-mono text-xs">
+                  {feature.number}
+                </div>
+                <h2 className="mb-4 font-mono text-2xl font-medium tracking-tight">
+                  {feature.title}
+                </h2>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
             </div>

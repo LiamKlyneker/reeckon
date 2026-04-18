@@ -6,7 +6,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: (props) => (
       <h1
-        className="text-foreground mb-4 text-3xl font-bold tracking-tight"
+        className="sec-kicker text-foreground mb-4 text-3xl font-medium tracking-tight"
         {...props}
       />
     ),

@@ -51,6 +51,8 @@
     "link:global": "pnpm build && pnpm link --global"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.2.5",
+    "@fontsource/ibm-plex-sans": "^5.2.5",
     "@tailwindcss/vite": "^4",
     "@vitejs/plugin-react": "^4.5.2",
     "cac": "^6.7.14",
