@@ -31,9 +31,12 @@ async function main() {
   const dirArg = process.argv[2];
 
   let projectName: string;
+  let targetDir: string;
 
   if (dirArg) {
-    projectName = basename(dirArg);
+    targetDir = resolve(process.cwd(), dirArg);
+    projectName =
+      targetDir === process.cwd() ? basename(process.cwd()) : basename(dirArg);
   } else {
     const response = await prompts({
       type: "text",
@@ -47,9 +50,8 @@ async function main() {
       process.exit(1);
     }
     projectName = response.name as string;
+    targetDir = resolve(process.cwd(), projectName);
   }
-
-  const targetDir = resolve(process.cwd(), dirArg || projectName);
 
   console.log();
   console.log(`  ${pc.bold(pc.magenta("reeckon"))} ${pc.dim("scaffolder")}`);
@@ -92,7 +94,9 @@ async function main() {
   console.log();
   console.log("  Next steps:");
   console.log();
-  console.log(`  ${pc.dim("$")} cd ${projectName}`);
+  if (targetDir !== process.cwd()) {
+    console.log(`  ${pc.dim("$")} cd ${projectName}`);
+  }
   console.log(`  ${pc.dim("$")} pnpm install`);
   console.log(`  ${pc.dim("$")} pnpm dev`);
   console.log();
