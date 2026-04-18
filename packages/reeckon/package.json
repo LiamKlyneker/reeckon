@@ -1,15 +1,47 @@
 {
   "name": "reeckon",
   "version": "0.1.0",
-  "description": "The Storybook for your AI Skills",
+  "description": "A centralized AI skill registry for your team. Write once and integrate instantly with Claude, Cursor, Antigravity, and other LLM tools.",
+  "keywords": [
+    "ai",
+    "skills",
+    "registry",
+    "claude",
+    "cursor",
+    "codex",
+    "antigravity",
+    "agents",
+    "llm",
+    "cli",
+    "developer-tools"
+  ],
+  "author": "Liam Klyneker <liamklyneker@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/LiamKlyneker/reeckon#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiamKlyneker/reeckon.git",
+    "directory": "packages/reeckon"
+  },
+  "bugs": {
+    "url": "https://github.com/LiamKlyneker/reeckon/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "bin": {
     "reeckon": "./dist/cli/index.js"
   },
   "files": [
     "dist",
-    "src/viewer"
+    "src/viewer",
+    "LICENSE",
+    "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prepare": "tsup",
     "build": "tsup",

@@ -1,14 +1,41 @@
 {
   "name": "create-reeckon",
   "version": "0.1.0",
-  "description": "Scaffold a new Reeckon skills project",
+  "description": "Scaffold a new Reeckon project for your AI skills.",
+  "keywords": [
+    "reeckon",
+    "scaffold",
+    "create",
+    "cli",
+    "ai",
+    "skills"
+  ],
+  "author": "Liam Klyneker <liamklyneker@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/LiamKlyneker/reeckon/tree/main/packages/create-reeckon#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiamKlyneker/reeckon.git",
+    "directory": "packages/create-reeckon"
+  },
+  "bugs": {
+    "url": "https://github.com/LiamKlyneker/reeckon/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "bin": {
     "create-reeckon": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
