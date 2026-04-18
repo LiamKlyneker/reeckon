@@ -21,6 +21,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2"
   },
   "pnpm": {
+    "managePackageManagerVersions": false,
     "onlyBuiltDependencies": [
       "esbuild"
     ]
