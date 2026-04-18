@@ -1,77 +1,53 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Container from "@/components/container";
+import SectionTitle from "./section-title";
+import { useReveal } from "../_lib/use-reveal";
+import { cn } from "@/lib/utils";
 
-// TODO: replace placeholder divs with actual tool logos
 const TOOLS = [
-  "Cursor",
-  "Claude Code",
-  "Antigravity",
-  "Amp",
-  "Cline",
-  "Codex",
-  "Gemini CLI",
-  "GitHub Copilot",
-  "Replit",
-  "Warp",
-  "OpenCode",
-  "Deep Agents",
+  "claude",
+  "cursor",
+  "codex",
+  "antigravity",
+  "amp",
+  "cline",
+  "warp",
+  "gemini",
+  "copilot",
+  "replit",
+  "opencode",
+  "deep-agents",
 ];
 
 const FORMAT_PATHS = [".agents/skills/", ".claude/skills/", ".agent/skills/"];
 
-function useScrollReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return { ref, visible };
-}
-
 export default function SupportedTools() {
-  const { ref, visible } = useScrollReveal();
+  const { ref, revealed } = useReveal<HTMLDivElement>(0.2);
 
   return (
-    <Container className="py-40">
-      <div className="mb-16 text-center">
-        <h2 className="mb-4 text-3xl font-semibold">
-          One source of truth, every tool connected
-        </h2>
-        <p className="text-muted-foreground mx-auto max-w-[520px]">
-          Write skills once in your repo. Reeckon adapts them for every AI tool
-          your team uses.
-        </p>
-      </div>
+    <Container className="py-32">
+      <SectionTitle
+        kicker="interop"
+        title="One source of truth, every tool connected."
+        sub="Write skills once in your repo. reeckon adapts them for every AI tool your team uses."
+      />
 
-      <div ref={ref} className="relative mx-auto max-w-[800px]">
-        {/* Center hub */}
-        <div className="mx-auto mb-12 flex flex-col items-center gap-3">
-          <div className="bg-primary text-primary-foreground flex size-20 items-center justify-center rounded-xl text-sm font-semibold">
+      <div ref={ref} className="relative mx-auto max-w-[900px]">
+        <div className="mb-16 flex flex-col items-center gap-14">
+          <div className="hub-core bg-primary text-primary-foreground flex size-[84px] items-center justify-center rounded-2xl font-mono text-[13px] font-semibold">
             reeckon
+            <span className="wv" />
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap justify-center gap-1.5">
             {FORMAT_PATHS.map((path) => (
               <span
                 key={path}
-                className="bg-accent text-muted-foreground rounded px-2 py-1 text-xs"
+                className="rounded px-2.5 py-[5px] font-mono text-[11.5px]"
+                style={{
+                  background: "var(--secondary-accent-soft)",
+                  color: "var(--secondary-accent-text)",
+                }}
               >
                 {path}
               </span>
@@ -79,20 +55,27 @@ export default function SupportedTools() {
           </div>
         </div>
 
-        {/* Tool grid */}
-        <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
+        <div className="grid grid-cols-3 gap-2.5 md:grid-cols-6">
           {TOOLS.map((tool, i) => (
             <div
               key={tool}
-              className="border-border flex aspect-square items-center justify-center rounded-lg border p-2 text-center text-xs transition-all duration-500"
+              className={cn(
+                "border-border hover:border-foreground group flex aspect-square flex-col items-center justify-center gap-1.5 rounded-[10px] border p-2 text-center font-mono text-[11.5px] transition-all duration-500 hover:-translate-y-0.5"
+              )}
               style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(12px)",
+                opacity: revealed ? 1 : 0,
+                transform: revealed ? undefined : "translateY(12px)",
                 transitionDelay: `${i * 50}ms`,
               }}
             >
-              {/* TODO: replace with actual tool logo */}
-              {tool}
+              <span
+                className="size-5 rounded"
+                style={{
+                  background:
+                    "color-mix(in oklab, var(--muted-foreground) 20%, transparent)",
+                }}
+              />
+              <span>{tool.slice(0, 8)}</span>
             </div>
           ))}
         </div>

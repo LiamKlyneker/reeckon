@@ -3,6 +3,7 @@ import MainFeatures from "./_components/main-features";
 import SupportedTools from "./_components/supported-tools";
 import HowItWorks from "./_components/how-it-works";
 import Cta from "./_components/cta";
+import Rule from "./_components/rule";
 import { JsonLd } from "./_components/json-ld";
 
 export default function Page() {
@@ -36,9 +37,11 @@ export default function Page() {
         }}
       />
       <Hero />
-      <div className="h-1.5 bg-black" />
+      <Rule label="features · 01" />
       <MainFeatures />
+      <Rule label="interop · 02" variant="thin" />
       <SupportedTools />
+      <Rule label="how it works · 03" variant="thin" />
       <HowItWorks />
       <Cta />
     </main>

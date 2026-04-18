@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "./_layout/header";
 import Footer from "./_layout/footer";
 
-const geistSans = Geist({
+const plexSans = IBM_Plex_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
+const plexMono = IBM_Plex_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -41,9 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${plexSans.variable} ${plexMono.variable} antialiased`}>
         <Header />
         <div className="min-h-screen">{children}</div>
         <Footer />
