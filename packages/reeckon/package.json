@@ -1,6 +1,6 @@
 {
   "name": "reeckon",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A centralized AI skill registry for your team. Write once and integrate instantly with Claude, Cursor, Antigravity, and other LLM tools.",
   "keywords": [
     "ai",
