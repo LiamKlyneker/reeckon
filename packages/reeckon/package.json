@@ -54,7 +54,7 @@
     "@fontsource/ibm-plex-mono": "^5.2.5",
     "@fontsource/ibm-plex-sans": "^5.2.5",
     "@tailwindcss/vite": "^4",
-    "@vitejs/plugin-react": "^4.5.2",
+    "@vitejs/plugin-react": "^6.0.1",
     "cac": "^6.7.14",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
