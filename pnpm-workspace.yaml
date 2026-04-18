@@ -3,6 +3,13 @@ packages:
   - "packages/*"
   - "test/*"
 
+managePackageManagerVersions: false
+strictDepBuilds: false
+
+onlyBuiltDependencies:
+  - esbuild
+
 ignoredBuiltDependencies:
+  - msw
   - sharp
   - unrs-resolver
