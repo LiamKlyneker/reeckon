@@ -5,6 +5,10 @@ packages:
 
 managePackageManagerVersions: false
 
+onlyBuiltDependencies:
+  - esbuild
+
 ignoredBuiltDependencies:
+  - msw
   - sharp
   - unrs-resolver
