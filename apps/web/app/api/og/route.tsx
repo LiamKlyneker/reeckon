@@ -7,9 +7,9 @@ export async function GET(request: NextRequest) {
   const title =
     request.nextUrl.searchParams.get("title") ?? "Documentation — Reeckon";
 
-  const geistSemiBold = await fetch(
+  const plexMono = await fetch(
     new URL(
-      "https://fonts.gstatic.com/s/geist/v4/gyBhhwUxId8gMGYQMKR3pzfaWI_RQuQ4nQ.ttf"
+      "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAO8lc.ttf"
     )
   ).then((res) => res.arrayBuffer());
 
@@ -22,9 +22,9 @@ export async function GET(request: NextRequest) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        background:
-          "linear-gradient(135deg, #1a0533 0%, #4318D1 50%, #1a0533 100%)",
+        background: "#0a0a0b",
         padding: "60px 80px",
+        fontFamily: "IBM Plex Mono",
       }}
     >
       <div
@@ -40,13 +40,12 @@ export async function GET(request: NextRequest) {
             width: "48px",
             height: "48px",
             borderRadius: "12px",
-            background: "rgba(255, 255, 255, 0.2)",
+            background: "#3416ff",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             fontSize: "24px",
             color: "white",
-            fontFamily: "Geist",
           }}
         >
           R
@@ -55,7 +54,6 @@ export async function GET(request: NextRequest) {
           style={{
             fontSize: "32px",
             color: "white",
-            fontFamily: "Geist",
             letterSpacing: "-0.02em",
           }}
         >
@@ -64,13 +62,26 @@ export async function GET(request: NextRequest) {
       </div>
       <div
         style={{
+          display: "flex",
+          fontSize: "11px",
+          color: "#81f5de",
+          letterSpacing: "0.14em",
+          textTransform: "uppercase",
+          marginBottom: "20px",
+        }}
+      >
+        {"// Docs"}
+      </div>
+      <div
+        style={{
           fontSize: "48px",
           color: "white",
-          fontFamily: "Geist",
           textAlign: "center",
           lineHeight: 1.2,
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.02em",
           maxWidth: "900px",
+          borderBottom: "3px solid #81f5de",
+          paddingBottom: "12px",
         }}
       >
         {title}
@@ -78,10 +89,9 @@ export async function GET(request: NextRequest) {
       <div
         style={{
           fontSize: "20px",
-          color: "rgba(255, 255, 255, 0.7)",
-          fontFamily: "Geist",
+          color: "rgba(255, 255, 255, 0.6)",
           textAlign: "center",
-          marginTop: "24px",
+          marginTop: "28px",
         }}
       >
         reeckon.io/docs
@@ -95,8 +105,8 @@ export async function GET(request: NextRequest) {
       },
       fonts: [
         {
-          name: "Geist",
-          data: geistSemiBold,
+          name: "IBM Plex Mono",
+          data: plexMono,
           style: "normal",
           weight: 600,
         },

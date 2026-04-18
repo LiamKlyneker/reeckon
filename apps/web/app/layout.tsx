@@ -5,13 +5,13 @@ import Header from "./_layout/header";
 import Footer from "./_layout/footer";
 
 const plexSans = IBM_Plex_Sans({
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
 const plexMono = IBM_Plex_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
