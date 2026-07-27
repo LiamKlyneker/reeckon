@@ -167,7 +167,7 @@ Feature-specific components and utilities live **colocated** with their route us
 
 Each route/package can have a `CONTEXT.md` file documenting technical decisions. **Always read the relevant `CONTEXT.md` before working on a package or route**.
 
-The `scoped-context` skill (`.agents/skills/scoped-context/`) automates context loading. See its `convention-guide.md` for placement rules.
+The `scoped-context` skill automates context loading. See its `convention-guide.md` for placement rules. It is a global skill (symlinked into `~/.claude/skills/`), not vendored into this repo.
 
 ### Skills
 
